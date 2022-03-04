@@ -53,7 +53,7 @@ using SPADNC.Api.Filters;
 ```
 
 Here is the implementation of the filter: 
-[RequestAttribute.cs](Secure-Public-APIs-Dot-Net-Core/Filters/RequestAttribute.cs)
+**[RequestAttribute.cs](Secure-Public-APIs-Dot-Net-Core/Filters/RequestAttribute.cs)**
 
 ```sh
 namespace SPADNC.Api.Filters
@@ -139,7 +139,7 @@ using SPADNC.Api.Filters;
         }
 ```
 
-Here is the implementation of the filter [ValidateReferrer.cs](Secure-Public-APIs-Dot-Net-Core/Filters/ValidateReferrer.cs)
+Here is the implementation of the filter **[ValidateReferrer.cs](Secure-Public-APIs-Dot-Net-Core/Filters/ValidateReferrer.cs)**
 
 
 ```sh
@@ -214,10 +214,20 @@ namespace SPADNC.Api.Filters
 ## Add DoSattack middleware
 If you have the auto scale configured, DOS attacks overwhelm your APIs, making them unauthorized and/or expensive. There are various ways to avoid this problem by request throttling. There is an option here to use intermediaries to restrict the number of requests from particulate client IP addresses.
 
-Below is the code for [DosAttackMiddleware.cs](Secure-Public-APIs-Dot-Net-Core/Filters/DosAttackMiddleware.cs)
+
+You just need to do is add an DosAttackMiddleware to the **[Startup.cs](Secure-Public-APIs-Dot-Net-Core/Startup.cs)**
 
 ```sh
 
+public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+    app.UseDosAttackMiddleware();
+}
+
+```
+
+Below is the code for **[DosAttackMiddleware.cs](Secure-Public-APIs-Dot-Net-Core/Filters/DosAttackMiddleware.cs)**
+```sh
 
 namespace SPADNC.Api.Middlewares
 {
